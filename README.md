@@ -24,10 +24,11 @@ This repository contains a project developed as an assignment on the **"Complete
 🎯 Change servings functionality: update all ingredients according to current number servings
 🎯 Bookmarking functionality: display list of all bookmarked recipes
 🎯 User can upload own recipes
-🎯 User recipes will automatically be bookmarked
-🎯 User can only see their own recipes, not recipes from other users
-🎯 Store bookmarks data in the browser using local storage
-🎯 On page load, read saved bookmarks from local storage and display
+
+- 🎯 User recipes will automatically be bookmarked
+- 🎯 User can only see their own recipes, not recipes from other users
+- 🎯 Store bookmarks data in the browser using local storage
+- 🎯 On page load, read saved bookmarks from local storage and display
 
 ## 📝 User Stories
 
