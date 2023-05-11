@@ -38,13 +38,13 @@ This repository contains a project developed as an assignment on the **"Complete
 
 ## 🏆 What I learnt
 
-✅ Learn how to implement javascript modules on a web app using nodejs.
-✅ learn about to manipulate the state and update the current state accordingly with the users triggers.  
-✅ Learn the Model View Controller (MVC) architecture.  
-✅ Learn how to view an web app separating user interface (views) with the controller functions
-✅ Learn develop an advanced project only with javascript.  
-✅ Learn to plan a medium to intermediate web app project.
-✅ Learn how to build from scratch a web app with user interactions.
+- Learn how to implement `javascript modules` on a web app using nodejs.
+- learn about to `manipulate the state` and update the current state accordingly with the users triggers.
+- Learn the `Model View Controller (MVC) architecture`.
+- Learn how to view an web app separating user interface (views) with the controller functions
+- Learn develop an `advanced project` only with javascript.
+- Learn to plan a medium to intermediate web app project.
+- Learn how to build from scratch a web app with user interactions.
 
 ## 📬 Connect With Me
 
