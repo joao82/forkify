@@ -13,7 +13,7 @@ import searchView from './views/searchView.js';
 // https://forkify-api.herokuapp.com/v2
 
 // Control the Recipes
-const controlRecipes = async () => {
+const controlRecipes = async function () {
   try {
     // extract the id from the url endpoint
     const id = window.location.hash.slice(1);
@@ -43,7 +43,7 @@ const controlRecipes = async () => {
   }
 };
 
-const controlSearchResults = async () => {
+const controlSearchResults = async function () {
   try {
     // STEP 1: Render the spinner
     resultsView.renderSpinner();
@@ -67,7 +67,7 @@ const controlSearchResults = async () => {
   }
 };
 
-const controlPagination = goToPage => {
+const controlPagination = function (goToPage) {
   // STEP 1: Render NEW the results
   resultsView.render(model.getSearchResultsPage(goToPage));
 
@@ -75,7 +75,7 @@ const controlPagination = goToPage => {
   paginationView.render(model.state.search);
 };
 
-const controlServings = newServings => {
+const controlServings = function (newServings) {
   // STEP 1: Update the recipe servings (in state)
   model.updateServings(newServings);
 
@@ -84,7 +84,7 @@ const controlServings = newServings => {
   recipeView.update(model.state.recipe);
 };
 
-const controlAddBookmark = () => {
+const controlAddBookmark = function () {
   // STEP 1: Add or remove bookmark
   if (!model.state.recipe.bookmarked) {
     model.addBookMark(model.state.recipe);
@@ -98,11 +98,11 @@ const controlAddBookmark = () => {
   bookmarksView.render(model.state.bookmarks);
 };
 
-const controlBookmarks = () => {
+const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
-const controlAddRecipe = async newRecipe => {
+const controlAddRecipe = async function (newRecipe) {
   try {
     // show loading spinner
     addRecipeView.renderSpinner();
@@ -135,7 +135,7 @@ const controlAddRecipe = async newRecipe => {
 };
 
 // Init function
-const init = () => {
+const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);

@@ -1,6 +1,8 @@
-import { API_KEY, API_URL, RES_PER_PAGE } from './config';
+import { API_URL, RES_PER_PAGE } from './config';
 import { AJAX } from './helpers';
 // import { getJSON, sendJSON } from './helpers';
+
+API_KEY = process.env.API_KEY;
 
 export const state = {
   recipe: {},
@@ -13,7 +15,7 @@ export const state = {
   bookmarks: [],
 };
 
-const createRecipeObject = data => {
+const createRecipeObject = function (data) {
   const { recipe } = data.data;
   return {
     id: recipe.id,
@@ -24,7 +26,8 @@ const createRecipeObject = data => {
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
-    ...(recipe.key && { key: recipe.key }), // only add if there is a key on a recipe
+    // only add if there is a key on a recipe
+    ...(recipe.key && { key: recipe.key }),
   };
 };
 
@@ -56,7 +59,7 @@ export const loadRecipe = async function (id) {
   }
 };
 
-export const loadSearchResults = async query => {
+export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
 
@@ -81,21 +84,13 @@ export const loadSearchResults = async query => {
   }
 };
 
-export const getSearchResultsPage = (page = state.search.page) => {
+export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
 
   const start = (page - 1) * state.search.resultsPerPage; // 0;
   const end = page * state.search.resultsPerPage; // 9;
 
   return state.search.results.slice(start, end);
-};
-
-export const updateServings = function (newServings) {
-  state.recipe.ingredients.forEach(ing => {
-    ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
-  });
-
-  state.recipe.servings = newServings;
 };
 
 export const addBookMark = function (recipe) {
@@ -130,7 +125,7 @@ const init = function () {
 };
 init();
 
-const clearBookmarks = () => {
+const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
 // clearBookmarks();
@@ -142,8 +137,6 @@ export const uploadRecipe = async function (newRecipe) {
     const ingredients = Object.entries(newRecipe)
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
-        // ing = ['ingredient-1', '0.5, kg, rice']
-        // ingArr = ['0.5', 'kg', 'rice']
         const ingArr = ing[1].split(',').map(el => el.trim());
 
         // guard clause
@@ -156,7 +149,6 @@ export const uploadRecipe = async function (newRecipe) {
           return { quantity: quantity ? +quantity : null, unit, description };
         }
       });
-    console.log('ingredients: ', ingredients);
 
     const recipe = {
       title: newRecipe.title,
@@ -167,15 +159,21 @@ export const uploadRecipe = async function (newRecipe) {
       servings: +newRecipe.servings,
       ingredients,
     };
-    console.log('recipe: ', recipe);
 
     // const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
     const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
-    console.log('data: ', data);
 
     state.recipe = createRecipeObject(data);
     addBookMark(state.recipe);
   } catch (err) {
     throw err;
   }
+};
+
+export const updateServings = function (newServings) {
+  state.recipe.ingredients.forEach(ing => {
+    ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
+  });
+
+  state.recipe.servings = newServings;
 };
