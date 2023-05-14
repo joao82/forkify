@@ -2,6 +2,8 @@ import { Fraction } from 'fractional';
 import icons from 'url:../../img/icons.svg';
 import View from './View.js';
 
+const Fraction = require('fractional').Fraction;
+
 class RecipeView extends View {
   _parentEl = document.querySelector('.recipe');
   _errorMessage = 'We could not find your recipe. Please try again!';
@@ -139,21 +141,6 @@ class RecipeView extends View {
         </div>
     `;
   }
-
-  //   _generateMarkupIngredient(ing) {
-  //     return `
-  //       <li class="recipe__ingredient">
-  //          <svg class="recipe__icon">
-  //          <use href="${icons}_icon-check"></use>
-  //          </svg>
-  //          <div class="recipe__quantity">${ing.quantity}</div>
-  //          <div class="recipe__description">
-  //          <span class="recipe__unit">${ing.unit}</span>
-  //          ${ing.description}
-  //          </div>
-  //       </li>
-  //       `;
-  //   }
 }
 
 export default new RecipeView();

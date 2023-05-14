@@ -8,7 +8,6 @@ import paginationView from './views/paginationView.js';
 import recipeView from './views/recipeView.js';
 import resultsView from './views/resultsView.js';
 import searchView from './views/searchView.js';
-
 ///////////////////////////////////////
 // https://forkify-api.herokuapp.com/v2
 
