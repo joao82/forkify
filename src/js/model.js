@@ -1,8 +1,6 @@
-import { API_URL, RES_PER_PAGE } from './config';
+import { API_KEY, API_URL, RES_PER_PAGE } from './config';
 import { AJAX } from './helpers';
 // import { getJSON, sendJSON } from './helpers';
-
-API_KEY = process.env.API_KEY;
 
 export const state = {
   recipe: {},
@@ -128,7 +126,7 @@ init();
 const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
-// clearBookmarks();
+clearBookmarks();
 
 export const uploadRecipe = async function (newRecipe) {
   try {
